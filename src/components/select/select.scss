@@ -1,0 +1,99 @@
+$select-option-height: 48px;
+$select-option-padding: 16px;
+$select-container-padding: 16px;
+$select-container-transition-duration: 350ms;
+
+$select-max-visible-options: 5;
+
+// The md-select in the developer's markup
+md-select {
+}
+
+.md-select-menu-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  opacity: 0;
+
+  // Don't let the user select a new choice while it's animating
+  &:not(.md-clickable) {
+    pointer-events: none;
+  }
+
+  // enter: md-select scales in, then options fade in.
+  &.md-active {
+    opacity: 1;
+    md-select-menu {
+      transition: transform $swift-ease-out;
+      transition-duration: 200ms;
+      > * {
+        opacity: 1;
+        transition: $swift-ease-in;
+        transition-duration: 200ms;
+        transition-delay: 100ms;
+      }
+    }
+  }
+
+  // leave: the container fades out
+  &.md-leave {
+    opacity: 0;
+    transition: $swift-ease-in;
+    transition-duration: 250ms;
+  }
+}
+
+.md-select-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $select-option-height;
+  min-height: 48px;
+  padding: 0 $select-option-padding 0 $select-option-padding;
+}
+
+md-select-menu {
+  display: flex;
+  flex-direction: column;
+  &.md-reverse {
+    flex-direction: column-reverse;
+  }
+
+  box-shadow: $whiteframe-shadow-z1;
+  transform-origin: 0 0;
+  transform: scale(1.0);
+  max-height: $select-option-height * $select-max-visible-options;
+
+  md-content {
+    min-width: 136px;
+  }
+  > * {
+    opacity: 0;
+  }
+  // No top/bottom padding when overflowing
+  &:not(.md-overflow) md-content {
+    padding: $select-container-padding 0 $select-container-padding 0;
+  }
+}
+
+md-option {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: auto;
+
+  .md-text {
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  padding: 0 $select-option-padding 0 $select-option-padding;
+  height: $select-option-height;
+
+  &[selected] {
+    background: #f0f0f0;
+  }
+}

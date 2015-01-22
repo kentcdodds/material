@@ -1,0 +1,78 @@
+<div ng-app="selectDemoBasic" ng-controller="AppCtrl" layout="column">
+  <md-select style="position: absolute; left: 45%; top: 15%" ng-model="myChoice" md-multiple>
+    <md-select-label>Choice: {{myChoice}}</md-select-label>
+    <md-content>
+      <md-option value="1">1</md-option>
+      <md-option value="2">2</md-option>
+      <md-option value="3">3</md-option>
+      <md-option value="4">4</md-option>
+      <md-option value="5">5</md-option>
+      <md-option value="6">6</md-option>
+      <md-option value="7">7</md-option>
+      <md-option value="8">8</md-option>
+      <md-option value="9">9</md-option>
+      <md-option value="10">10</md-option>
+    </md-option>
+  </md-select>
+
+  <md-select ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]" style="position: absolute; left: 45%; top: {{i*10}}%" ng-model="$parent.myChoice">
+    <input ng-model="search">
+    <md-content>
+      <md-option value="1">1</md-option>
+      <md-option value="2">2</md-option>
+      <md-option value="3">3</md-option>
+      <md-option value="4">4</md-option>
+      <md-option value="5">5</md-option>
+      <md-option value="6">6</md-option>
+      <md-option value="7">7</md-option>
+      <md-option value="8">8</md-option>
+      <md-option value="9">9</md-option>
+      <md-option value="10">10</md-option>
+    </md-option>
+  </md-select>
+
+  <md-select style="position: absolute; left: 15%; top: 55%" ng-model="myChoice">
+    <md-content>
+      <md-option value="1">1</md-option>
+      <md-option value="2">2</md-option>
+      <md-option value="3">3</md-option>
+      <md-option value="4">4</md-option>
+      <md-option value="5">5</md-option>
+    </md-option>
+  </md-select>
+  <md-radio-group ng-model="myChoice" ng-init="myChoice = 4">
+    <md-radio-button ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]" ng-value="i">
+      {{i}}
+    </md-radio-button>
+  </md-radio-group>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+  <p>hello</p>
+</div>
+    
