@@ -272,7 +272,7 @@ function MdDialogProvider($$interimElementProvider) {
   function advancedDialogOptions($mdDialog) {
     return {
       template: [
-        '<md-dialog aria-label="{{ dialog.ariaLabel }}">',
+        '<md-dialog aria-label="{{ dialog.ariaLabel }}" tabIndex="-1">',
           '<md-content role="document" tabIndex="0">',
             '<h2>{{ dialog.title }}</h2>',
             '<p>{{ dialog.content }}</p>',
@@ -317,6 +317,14 @@ function MdDialogProvider($$interimElementProvider) {
       }
     };
 
+    function trapFocus(event) {
+      var dialog = document.querySelector('md-dialog');
+
+      if(!dialog.contains(event.target)) {
+        event.stopPropagation();
+        dialog.focus();
+      }
+    }
 
     // On show method for dialogs
     function onShow(scope, element, options) {
@@ -343,6 +351,8 @@ function MdDialogProvider($$interimElementProvider) {
       }
 
       configureAria(element.find('md-dialog'), role);
+
+      document.addEventListener('focus', trapFocus, true);
 
       if (options.disableParentScroll) {
         options.lastOverflow = options.parent.css('overflow');
@@ -406,6 +416,9 @@ function MdDialogProvider($$interimElementProvider) {
       if (options.clickOutsideToClose) {
         element.off('click', options.dialogClickOutsideCallback);
       }
+
+      document.removeEventListener('focus', trapFocus, true);
+
       return dialogPopOut(
         element,
         options.parent,
